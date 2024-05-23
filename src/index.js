@@ -4,9 +4,11 @@ import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import sum from '@/test';
 import router from './router';
+import { Provider } from 'react-redux';
 
 // import theme subject file 
 import './theme.css'
+import store from './store';
 
 const total = sum(1,3)
 console.log(total)
@@ -15,5 +17,7 @@ console.log(total)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RouterProvider router={router}/>
+  <Provider store={store}>
+    <RouterProvider router={router}/>
+  </Provider>
 );
