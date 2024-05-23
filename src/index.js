@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-
+import { RouterProvider } from 'react-router-dom';
 import sum from '@/test';
+import router from './router';
 
 const total = sum(1,3)
 console.log(total)
@@ -12,5 +12,5 @@ console.log(total)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App />
+  <RouterProvider router={router}/>
 );
