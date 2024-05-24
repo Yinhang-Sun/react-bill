@@ -1,10 +1,19 @@
 import { NavBar, DatePicker } from 'antd-mobile'
 import './index.scss'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
+import { useSelector } from 'react-redux'
+import _ from 'lodash'
 
 const Month = () => {
+    // Group data by month 
+    const billList = useSelector(state => state.bill.billList)
+    const monthGroup = useMemo(() => {
+        // return the calculated value 
+        return _.groupBy(billList, (item) => dayjs(item.date).format('YYYY-MM'))
+    }, [billList])
+    console.log(monthGroup) 
     // Control the opening and closing of pop-up windows
     const [dateVisible, setDateVisible] = useState(false)
     
