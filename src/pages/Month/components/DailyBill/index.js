@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import './index.scss'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
 const DailyBill = ({ date, billList }) => {
   const dayResult = useMemo(() => {
@@ -14,12 +14,16 @@ const DailyBill = ({ date, billList }) => {
     }
 }, [billList])
 
+  // controll opening and closing of arrow 
+  const [visible, setVisible] = useState(false)
+
   return (
     <div className={classNames('dailyBill')}>
       <div className="header">
         <div className="dateIcon">
           <span className="date">{date}</span>
-          <span className={classNames('arrow')}></span>
+          {/* expand class, if having this, Expanded arrow pointing upward */}
+          <span className={classNames('arrow', visible && 'expand')} onClick={() => setVisible(!visible)}></span>
         </div>
         <div className="oneLineOverview">
           <div className="pay">
@@ -35,6 +39,21 @@ const DailyBill = ({ date, billList }) => {
             <span className="money">{dayResult.total.toFixed(2)}</span>
           </div>
         </div>
+      </div>
+      {/* Single day list */}
+      <div className="billList" style={{display: visible?'block' : 'none'}}>
+        {billList.map(item => {
+          return (
+            <div className="bill" key={item.id}>
+              <div className="detail">
+                <div className="billType">{item.useFor}</div>
+              </div>
+              <div className={classNames('money', item.type)}>
+                {item.money.toFixed(2)}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
