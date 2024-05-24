@@ -22,11 +22,27 @@ const Month = () => {
         return dayjs(new Date()).format('YYYY-MM')
     })
 
+    const [currentMonthList, setMonthList] = useState([])
+
+    const monthResult = useMemo(() => {
+        // pay, income, balance 
+        const pay = currentMonthList.filter(item => item.type === 'pay').reduce((a, c) => a + c.money, 0)
+        const income = currentMonthList.filter(item => item.type === 'income').reduce((a, c) => a + c.money, 0)
+        return {
+            pay, 
+            income, 
+            total: pay + income
+        }
+    }, [currentMonthList])
+
+    // Confirm callback 
     const onConfirm = (date) => {
         setDateVisible(false)
         // Other logic 
         console.log(date);
         const formatDate = dayjs(date).format('YYYY-MM')
+        console.log(formatDate)
+        setMonthList(monthGroup[formatDate])
         setCurrentDate(formatDate)
     }
     return (
@@ -46,15 +62,15 @@ const Month = () => {
                     {/* Statistical area */}
                     <div className='twoLineOverview'>
                         <div className="item">
-                            <span className="money">{100}</span>
+                            <span className="money">{monthResult.pay.toFixed(2)}</span>
                             <span className="type">Expense</span>
                         </div>
                         <div className="item">
-                            <span className="money">{200}</span>
+                            <span className="money">{monthResult.income.toFixed(2)}</span>
                             <span className="type">Income</span>
                         </div>
                         <div className="item">
-                            <span className="money">{200}</span>
+                            <span className="money">{monthResult.total.toFixed(2)}</span>
                             <span className="type">Balance</span>
                         </div>
                     </div>
