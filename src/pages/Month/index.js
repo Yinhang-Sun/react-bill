@@ -1,10 +1,11 @@
 import { NavBar, DatePicker } from 'antd-mobile'
 import './index.scss'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
+import DailyBill from './components/DailyBill'
 
 const Month = () => {
     // Group data by month 
@@ -35,6 +36,14 @@ const Month = () => {
         }
     }, [currentMonthList])
 
+    // During initialization, display the statistical data of the current month.
+    useEffect(() => {
+        const nowDate = dayjs().format('YYYY-MM')
+        if(monthGroup[nowDate]) {
+            setMonthList(monthGroup[nowDate])
+        }
+    }, [monthGroup])
+
     // Confirm callback 
     const onConfirm = (date) => {
         setDateVisible(false)
@@ -45,6 +54,17 @@ const Month = () => {
         setMonthList(monthGroup[formatDate])
         setCurrentDate(formatDate)
     }
+
+    // Current month grouped by day
+    const dayGroup = useMemo(() => {
+        // return the calculated value 
+        const groupData =  _.groupBy(currentMonthList, (item) => dayjs(item.date).format('YYYY-MM-DD'))
+        const keys = Object.keys(groupData) 
+        return {
+            groupData, 
+            keys
+        }
+    }, [currentMonthList])
     return (
         <div className="monthlyBill">
             <NavBar className="nav" backArrow={false}>
@@ -63,7 +83,7 @@ const Month = () => {
                     <div className='twoLineOverview'>
                         <div className="item">
                             <span className="money">{monthResult.pay.toFixed(2)}</span>
-                            <span className="type">Expense</span>
+                            <span className="type">Pay</span>
                         </div>
                         <div className="item">
                             <span className="money">{monthResult.income.toFixed(2)}</span>
@@ -86,6 +106,12 @@ const Month = () => {
                         max={new Date()}
                     />
                 </div>
+                {/* Daily bill stattistics  */}
+                {
+                    dayGroup.keys.map(key => {
+                        return <DailyBill key={key} date={key} billList={dayGroup.groupData[key]}/>
+                    })
+                }
             </div>
         </div >
     )
