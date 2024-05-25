@@ -12,12 +12,16 @@ const billStore = createSlice({
         // Synchronous modification method
         setBillList(state, action) {
             state.billList = action.payload
+        }, 
+        // Synchronous adding bill method 
+        addBill (state, action) {
+            state.billList.push(action.payload)
         }
     }
 })
 
 // Deconstruct actionCreator function
-const { setBillList } = billStore.actions
+const { setBillList, addBill } = billStore.actions
 
 // Write asynchronous logic
 const getBillList = () => {
@@ -29,7 +33,16 @@ const getBillList = () => {
     }
 }
 
-export { getBillList }
+const addBillList = (data) => {
+    return async (dispatch) => {
+        // Write asynchronous request 
+        const res = await axios.post('http://localhost:8888/ka', data)
+        //Trigger synchronous reducer
+        dispatch(addBill(res.data))
+    } 
+}
+
+export { getBillList, addBillList }
 // export reducer 
 const reducer = billStore.reducer
 
