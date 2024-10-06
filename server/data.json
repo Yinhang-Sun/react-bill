@@ -111,6 +111,13 @@
       "date": "2024-05-24T07:00:00.000Z",
       "useFor": "drinks",
       "id": 23
+    },
+    {
+      "type": "income",
+      "money": 10000,
+      "date": "2024-04-24T07:00:00.000Z",
+      "useFor": "salary",
+      "id": 24
     }
   ]
 }
