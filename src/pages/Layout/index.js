@@ -34,7 +34,7 @@ const Layout = () => {
     dispatch(getBillList())
   }, [dispatch])
 
-  // Switch menu jump route
+  // Switch menu jumping route
   const navigate = useNavigate()
   const switchRoute = (path) => {
     console.log(path);
