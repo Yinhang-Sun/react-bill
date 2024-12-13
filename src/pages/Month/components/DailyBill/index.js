@@ -6,7 +6,7 @@ import Icon from '@/components/Icon'
 
 const DailyBill = ({ date, billList }) => {
   const dayResult = useMemo(() => {
-    // Pay, income, balance 
+    // Pay, income and balance 
     const pay = billList.filter(item => item.type === 'pay').reduce((a, c) => a + c.money, 0)
     const income = billList.filter(item => item.type === 'income').reduce((a, c) => a + c.money, 0)
     return {
