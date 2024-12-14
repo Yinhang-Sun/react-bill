@@ -16,7 +16,7 @@ const DailyBill = ({ date, billList }) => {
     }
 }, [billList])
 
-  // controll opening and closing of arrow 
+  // Controll opening and closing of arrow 
   const [visible, setVisible] = useState(false)
 
   return (
