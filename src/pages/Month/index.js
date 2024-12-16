@@ -11,7 +11,7 @@ const Month = () => {
     // Group data by month 
     const billList = useSelector(state => state.bill.billList)
     const monthGroup = useMemo(() => {
-        // return the calculated value 
+        // Return the calculated value 
         return _.groupBy(billList, (item) => dayjs(item.date).format('YYYY-MM'))
     }, [billList])
     console.log(monthGroup) 
