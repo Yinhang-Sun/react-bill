@@ -26,7 +26,7 @@ const Month = () => {
     const [currentMonthList, setMonthList] = useState([])
 
     const monthResult = useMemo(() => {
-        // pay, income, balance 
+        // Pay, income, balance 
         const pay = currentMonthList.filter(item => item.type === 'pay').reduce((a, c) => a + c.money, 0)
         const income = currentMonthList.filter(item => item.type === 'income').reduce((a, c) => a + c.money, 0)
         return {
