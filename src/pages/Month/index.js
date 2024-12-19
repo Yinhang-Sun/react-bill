@@ -57,7 +57,7 @@ const Month = () => {
 
     // Current month grouped by day
     const dayGroup = useMemo(() => {
-        // return the calculated value 
+        // Return the calculated value 
         const groupData =  _.groupBy(currentMonthList, (item) => dayjs(item.date).format('YYYY-MM-DD'))
         const keys = Object.keys(groupData) 
         return {
