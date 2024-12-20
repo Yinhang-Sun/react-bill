@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
 
 const New = () => {
   const navigate = useNavigate()
-  // prepare a state to control pay and income
+  // Prepare a state to control pay and income
   const [billType, setBillType] = useState('pay')
 
   // collect money amount 
