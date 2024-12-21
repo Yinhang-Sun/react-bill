@@ -14,7 +14,7 @@ const New = () => {
   // Prepare a state to control pay and income
   const [billType, setBillType] = useState('pay')
 
-  // collect money amount 
+  // Collect money amount 
   const [money, setMoney] = useState(0) 
   const moneyChange = (value) => {
     setMoney(value)
