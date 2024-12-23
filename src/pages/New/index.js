@@ -22,7 +22,7 @@ const New = () => {
   // Collect bill usedfor 
   const [useFor, setUseFor] = useState('')
   const dispatch = useDispatch()
-  // save bill 
+  // Save bill 
   const saveBill = () => {
     // collect bill data 
     const data = {
