@@ -24,7 +24,7 @@ const New = () => {
   const dispatch = useDispatch()
   // Save bill 
   const saveBill = () => {
-    // collect bill data 
+    // Collect bill data 
     const data = {
         type: billType, 
         money: billType === 'pay' ? -money : +money, 
