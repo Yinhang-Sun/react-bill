@@ -34,7 +34,7 @@ const New = () => {
     console.log(data);
     dispatch(addBillList(data))
   }
-  // save time picked 
+  // Save time picked 
   const [date, setDate] = useState() 
   // control the date opening or closing 
   const [dateVisible, setDateVisible] = useState(false)
