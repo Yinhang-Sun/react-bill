@@ -104,7 +104,7 @@ const New = () => {
               <div className="title">{item.name}</div>
               <div className="list">
                 {item.list.map(item => {
-                    // selected: active when click 
+                    // Selected: active when click 
                   return (
                     <div
                       className={classNames(
