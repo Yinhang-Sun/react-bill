@@ -6,7 +6,7 @@ import sum from '@/test';
 import router from './router';
 import { Provider } from 'react-redux';
 
-// import theme subject file 
+// Import theme subject file 
 import './theme.css'
 import store from './store';
 
